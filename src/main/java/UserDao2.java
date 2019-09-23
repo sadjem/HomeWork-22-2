@@ -56,7 +56,7 @@ public class UserDao2 implements Storage{
     public void removeUser(int id) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.gitdelete("FROM User WHERE id = :id", User.class);
+            session.delete("FROM User WHERE id = :id", User.class);
             transaction.commit();
         }
     }
