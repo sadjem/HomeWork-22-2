@@ -47,7 +47,7 @@ public class UserDao2 implements Storage{
     public User getUser(int id) {
         try (Session session = sessionFactory.openSession()){
             return session
-                    .createQuery("FROM users WHERE id = :id ", User.class)
+                    .createQuery("FROM User WHERE id = :id ", User.class)
                     .setParameter("id", id)
                     .getSingleResult();
         }
@@ -56,7 +56,7 @@ public class UserDao2 implements Storage{
     public void removeUser(int id) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.delete("FROM users WHERE id = :id", User.class);
+            session.gitdelete("FROM User WHERE id = :id", User.class);
             transaction.commit();
         }
     }
@@ -65,14 +65,14 @@ public class UserDao2 implements Storage{
     public void removeUserByName(String name) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.delete("FROM users WHERE name = :name", User.class);
+            session.delete("FROM User WHERE name = :name", User.class);
             transaction.commit();
         }
     }
 
     public List<User> getAllUsers() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM users", User.class).list();
+            return session.createQuery("FROM User", User.class).list();
         }
     }
 }
